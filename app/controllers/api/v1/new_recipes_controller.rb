@@ -2,12 +2,12 @@ class Api::V1::NewRecipesController < ApplicationController
   before_action :set_recipe, only: %i[show destroy]
 
   def index
-    recipe = Recipe.all.order created_at: :desc
+    recipe = NewRecipe.all.order created_at: :desc
     render json: recipe
   end
 
   def create
-    recipe = Recipe.create! recipe_params
+    recipe = NewRecipe.create! recipe_params
     if recipe
       render json: recipe
     else
@@ -31,6 +31,6 @@ class Api::V1::NewRecipesController < ApplicationController
   end
 
   def set_recipe
-    @recipe = Recipe.find params[id]
+    @recipe = NewRecipe.find params[id]
   end
 end
