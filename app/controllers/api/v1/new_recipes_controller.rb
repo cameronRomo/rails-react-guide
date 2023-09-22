@@ -1,9 +1,9 @@
 class Api::V1::NewRecipesController < ApplicationController
-  before_action :set_recipe, only: %i[show destroy]
+  before_action :set_recipe, only: %i(show destroy)
 
   def index
-    recipe = NewRecipe.all.order created_at: :desc
-    render json: recipe
+    @recipes = NewRecipe.all.order created_at: :desc
+    render json: @recipes
   end
 
   def create
@@ -31,6 +31,6 @@ class Api::V1::NewRecipesController < ApplicationController
   end
 
   def set_recipe
-    @recipe = NewRecipe.find params[id]
+    @recipe = NewRecipe.find params[:id]
   end
 end
