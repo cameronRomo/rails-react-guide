@@ -22,10 +22,6 @@ export const Recipe = () => {
       });
   }, [params.id]);
 
-  // const addHtmlEntities = (str) => {
-  //   return String(str).replace(/&gt;/g, ">");
-  // };
-
   const ingredientList = () => {
     let ingredientList = "No ingredients available";
 
