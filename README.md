@@ -28,6 +28,6 @@
     
     Capybara.default_driver = :selenium_chrome_headless
   ```
-- Add feature tests with the following convention `<your_test>_spec.rb`
+- Add feature tests with the following convention `<your_test>_spec.rb` (refer to line 10 in `spec/rails_helper.rb` for more info).
   - Follow [docs](https://github.com/teamcapybara/capybara#the-dsl:~:text=database%20setup%20below.-,The%20DSL,-A%20complete%20reference) for ideas, and to properly use the DSL.
   - Run test suite with `bundle exec rspec`
