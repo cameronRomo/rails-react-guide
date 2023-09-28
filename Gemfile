@@ -57,6 +57,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
   gem "capybara"
   gem 'selenium-webdriver'
+  gem 'capybara-screenshot'
+  gem 'factory_bot', '~> 6.3'
 end
 
 group :development do

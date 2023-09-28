@@ -29,7 +29,34 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
+def file_path(example, filetype)
+  meta = example.metadata
+  name = "feature-#{File.basename(meta[:file_path])}-line:#{meta[:line_number]}.#{filetype}"
+  screenshot_root_path = Rails.root.join("tmp", "capybara")
+  screenshot_path = [screenshot_root_path, 'feature_tests', name].join("/")
+
+  puts "Screenshot Taken: #{screenshot_path}\n"
+  screenshot_path
+end
+
+def load_seeds
+  Rake::Task["db:seed"].invoke
+end
+
 RSpec.configure do |config|
+  config.before(:each, :type => :feature) do
+    Capybara.page.current_window.resize_to(1024, 768)
+  end
+
+  config.after(:each, :type => :feature) do |example|
+    if example.exception
+      page.save_screenshot(file_path(example, 'png'), full: true)
+    end
+
+    Capybara.current_session.quit
+  end
+  config.include FactoryBot::Syntax::Methods
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
