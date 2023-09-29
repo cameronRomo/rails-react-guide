@@ -29,3 +29,14 @@
 - Add feature tests with the following convention `<your_test>_spec.rb` (refer to line 10 in `spec/rails_helper.rb` for more info).
   - Follow [capybara's docs](https://github.com/teamcapybara/capybara#the-dsl:~:text=database%20setup%20below.-,The%20DSL,-A%20complete%20reference) for ideas, and to properly use the DSL.
   - Run test suite with `bundle exec rspec`
+
+  #### Seeding test data with FactoryBot gem
+  - Add `gem 'factory_bot'` to your Gemfile and run `bundle install`
+  - Add `config.include FactoryBot::Syntax::Methods` in `rails_helper.rb`
+  - Add the following to `spec_helper.rb` inside `RSpec.configure` block.
+  
+    `config.before(:all) do
+      FactoryBot.reload
+    end `
+  - Add a factories directory with factory files inside of the spec directory following expected format (good place to reference seeds file).
+  - Call `FactoryBot.create` to make new test data.
