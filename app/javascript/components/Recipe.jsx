@@ -62,6 +62,7 @@ export const Recipe = () => {
           src={recipe.image}
           alt={`${recipe.name} image`}
           className="img-fluid position-absolute"
+          id="recipe-image"
         />
         <div className="overlay bg-dark position-absolute" />
         <h1 className="display-4 position-relative text-white">
@@ -78,7 +79,7 @@ export const Recipe = () => {
           </div>
           <div className="col-sm-12 col-lg-7">
             <h5 className="mb-2">Preparation Instructions</h5>
-            <p>{recipe.instruction}</p>
+            <p className="prep-instructions">{recipe.instruction}</p>
           </div>
           <div className="col-sm-12 col-lg-2">
             <button
